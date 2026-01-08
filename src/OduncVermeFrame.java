@@ -15,7 +15,7 @@ public class OduncVermeFrame extends JFrame {
     private DefaultComboBoxModel<ComboItem> modelUye, modelKitap;
     private JTextField txtUyeAra, txtKitapAra;
 
-    private final long islemYapanID = 1L; // Test için 1, gerçekte login'den gelecek
+    private final long islemYapanID = 1L; 
 
     private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("dd.MM.yyyy");
 
@@ -43,7 +43,6 @@ public class OduncVermeFrame extends JFrame {
         gbc.insets = new Insets(15, 15, 15, 15);
         gbc.anchor = GridBagConstraints.WEST;
 
-        // Üye Bölümü
         gbc.gridx = 0; gbc.gridy = 0; gbc.gridwidth = 1;
         panel.add(new JLabel("Üye Ara:"), gbc);
 
@@ -69,7 +68,6 @@ public class OduncVermeFrame extends JFrame {
         gbc.gridx = 1; gbc.gridy = 2; gbc.gridwidth = 3;
         panel.add(lblUyeBilgi, gbc);
 
-        // Kitap Bölümü
         gbc.gridx = 0; gbc.gridy = 3; gbc.gridwidth = 1;
         panel.add(new JLabel("Kitap Ara:"), gbc);
 
@@ -95,7 +93,6 @@ public class OduncVermeFrame extends JFrame {
         gbc.gridx = 1; gbc.gridy = 5; gbc.gridwidth = 3;
         panel.add(lblKitapBilgi, gbc);
 
-        // Ödünç Ver Butonu
         JButton btnOduncVer = new JButton("ÖDÜNÇ VER");
         btnOduncVer.setFont(new Font("Segoe UI", Font.BOLD, 32));
         btnOduncVer.setBackground(new Color(0, 140, 0));
@@ -129,7 +126,6 @@ public class OduncVermeFrame extends JFrame {
 
         add(panelAlt, BorderLayout.SOUTH);
 
-        // Çarpıya basınca da ana menüye dön
         addWindowListener(new java.awt.event.WindowAdapter() {
             @Override
             public void windowClosing(java.awt.event.WindowEvent e) {
@@ -143,7 +139,6 @@ public class OduncVermeFrame extends JFrame {
         cmbUye.addActionListener(e -> uyeBilgiGoster());
         cmbKitap.addActionListener(e -> kitapBilgiGoster());
 
-        // Gerçek zamanlı arama
         txtUyeAra.getDocument().addDocumentListener(new DocumentListener() {
             public void insertUpdate(DocumentEvent e) { uyeFiltrele(); }
             public void removeUpdate(DocumentEvent e) { uyeFiltrele(); }
@@ -156,13 +151,10 @@ public class OduncVermeFrame extends JFrame {
             public void changedUpdate(DocumentEvent e) { kitapFiltrele(); }
         });
 
-        // İlk yükleme
         uyeDoldur("");
         kitapDoldur("");
     }
 
-    // uyeFiltrele, kitapFiltrele, uyeDoldur, kitapDoldur, uyeBilgiGoster, kitapBilgiGoster, oduncVer metodları aynı kalıyor
-    // (Yer tasarrufu için aynı bıraktım, senin kodundaki gibi kalsın)
 
     private void uyeFiltrele() {
         String arama = txtUyeAra.getText().trim().toLowerCase();
@@ -289,7 +281,6 @@ public class OduncVermeFrame extends JFrame {
             return;
         }
 
-        // Borç kontrolü
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement ps = conn.prepareStatement("SELECT toplamborc FROM uye WHERE uyeid=?")) {
 
@@ -310,7 +301,6 @@ public class OduncVermeFrame extends JFrame {
             return;
         }
 
-        // Onay mesajı
         String mesaj = "<html><b>Ödünç verme onayı:</b><br><br>" +
                        "Üye: <b>" + uye.getText() + "</b><br>" +
                        "Kitap: <b>" + kitap.getText().split(" - ")[0] + "</b><br>" +
@@ -320,7 +310,6 @@ public class OduncVermeFrame extends JFrame {
         int onay = JOptionPane.showConfirmDialog(this, mesaj, "Onaylıyor musunuz?", JOptionPane.YES_NO_OPTION);
         if (onay != JOptionPane.YES_OPTION) return;
 
-        // Stored procedure çağrısı
         try (Connection conn = DatabaseConnection.getConnection()) {
             conn.setAutoCommit(false);
 
@@ -349,4 +338,5 @@ public class OduncVermeFrame extends JFrame {
             JOptionPane.showMessageDialog(this, "Bağlantı hatası: " + e.getMessage(), "Hata", JOptionPane.ERROR_MESSAGE);
         }
     }
+
 }
