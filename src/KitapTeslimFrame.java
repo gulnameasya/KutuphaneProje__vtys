@@ -51,7 +51,6 @@ public class KitapTeslimFrame extends JFrame {
 
         add(panelAra, BorderLayout.NORTH);
 
-        // Gerçek zamanlı arama
         txtAra.getDocument().addDocumentListener(new DocumentListener() {
             public void insertUpdate(DocumentEvent e) { oduncListele(txtAra.getText().trim()); }
             public void removeUpdate(DocumentEvent e) { oduncListele(txtAra.getText().trim()); }
@@ -80,13 +79,11 @@ public class KitapTeslimFrame extends JFrame {
         table.setGridColor(new Color(200, 200, 200));
         table.setShowGrid(true);
 
-        // Tarih sütunlarını ortala
         DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
         centerRenderer.setHorizontalAlignment(JLabel.CENTER);
         table.getColumnModel().getColumn(4).setCellRenderer(centerRenderer);
         table.getColumnModel().getColumn(5).setCellRenderer(centerRenderer);
 
-        // Gecikme sütununu kırmızı ve kalın yap
         table.getColumnModel().getColumn(6).setCellRenderer(new DefaultTableCellRenderer() {
             @Override
             public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
@@ -108,7 +105,6 @@ public class KitapTeslimFrame extends JFrame {
         panelAlt.setBackground(new Color(240, 255, 240));
         panelAlt.setBorder(BorderFactory.createEmptyBorder(20, 40, 30, 40));
 
-        // Teslim Al Butonu (sağda)
         JButton btnTeslimAl = new JButton("TESLİM AL");
         btnTeslimAl.setFont(new Font("Segoe UI", Font.BOLD, 30));
         btnTeslimAl.setBackground(new Color(0, 140, 0));
@@ -121,7 +117,6 @@ public class KitapTeslimFrame extends JFrame {
         JPanel panelSag = new JPanel(new FlowLayout(FlowLayout.RIGHT));
         panelSag.add(btnTeslimAl);
 
-        // Geri Dön Butonu (solda)
         JButton btnGeri = new JButton("← Ana Menüye Dön");
         btnGeri.setFont(new Font("Segoe UI", Font.BOLD, 18));
         btnGeri.setBackground(new Color(100, 100, 100));
@@ -141,7 +136,6 @@ public class KitapTeslimFrame extends JFrame {
         panelAlt.add(panelSag, BorderLayout.EAST);
         add(panelAlt, BorderLayout.SOUTH);
 
-        // Çarpıya basınca da ana menüye dön
         addWindowListener(new java.awt.event.WindowAdapter() {
             @Override
             public void windowClosing(java.awt.event.WindowEvent e) {
@@ -149,7 +143,6 @@ public class KitapTeslimFrame extends JFrame {
             }
         });
 
-        // İlk yükleme
         oduncListele("");
     }
 
@@ -257,4 +250,5 @@ public class KitapTeslimFrame extends JFrame {
                     "Hata", JOptionPane.ERROR_MESSAGE);
         }
     }
+
 }
