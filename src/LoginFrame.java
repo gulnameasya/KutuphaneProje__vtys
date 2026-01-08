@@ -62,7 +62,6 @@ public class LoginFrame extends JFrame {
         gbc.gridx = 1;
         add(txtSifre, gbc);
 
-        // Şifreyi göster
         chkSifreyiGoster = new JCheckBox("Şifreyi göster");
         chkSifreyiGoster.setFont(new Font("Segoe UI", Font.PLAIN, 16));
         chkSifreyiGoster.setBackground(new Color(240, 255, 240));
@@ -88,7 +87,6 @@ public class LoginFrame extends JFrame {
         btnGiris.addActionListener(e -> girisYap());
         getRootPane().setDefaultButton(btnGiris);
 
-        // Odak başlangıçta kullanıcı adı
         SwingUtilities.invokeLater(() -> txtKullaniciAdi.requestFocusInWindow());
     }
 
@@ -111,8 +109,7 @@ public class LoginFrame extends JFrame {
             return;
         }
 
-        // GEÇİCİ: Düz metin şifre (test için)
-        String sifreHash = sifre; // Teslim öncesi hashSifre(sifre) yap
+        String sifreHash = sifre; 
 
         String sql = """
             SELECT r.RolAdi
@@ -159,4 +156,5 @@ public class LoginFrame extends JFrame {
             new LoginFrame().setVisible(true);
         });
     }
+
 }
