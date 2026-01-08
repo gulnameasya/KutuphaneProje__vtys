@@ -148,7 +148,6 @@ public class KitapYonetimFrame extends JFrame {
 
         add(panelAlt, BorderLayout.SOUTH);
 
-        // Çarpıya basınca da ana menüye dön
         addWindowListener(new java.awt.event.WindowAdapter() {
             @Override
             public void windowClosing(java.awt.event.WindowEvent e) {
@@ -388,4 +387,5 @@ public class KitapYonetimFrame extends JFrame {
         if (cmbKategori.getItemCount() > 0) cmbKategori.setSelectedIndex(0);
         table.clearSelection();
     }
+
 }
