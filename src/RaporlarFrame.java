@@ -12,7 +12,6 @@ public class RaporlarFrame extends JFrame {
     private JTabbedPane tabbedPane;
     private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("dd.MM.yyyy");
 
-    // Güvenli view listesi
     private static final Set<String> ALLOWED_VIEWS = Set.of(
             "vw_tarihbazlioduncraporu",
             "vw_gecikenkitaplarraporu",
@@ -67,7 +66,6 @@ public class RaporlarFrame extends JFrame {
 
         add(panelAlt, BorderLayout.SOUTH);
 
-        // Çarpıya basınca da ana menüye dön
         addWindowListener(new java.awt.event.WindowAdapter() {
             @Override
             public void windowClosing(java.awt.event.WindowEvent e) {
@@ -134,7 +132,6 @@ public class RaporlarFrame extends JFrame {
                 model.addRow(row);
             }
 
-            // Sayı ve tarih sütunlarını ortala
             for (int i = 0; i < columnCount; i++) {
                 String header = columnNames.get(i).toLowerCase();
                 if (header.contains("tarih") || header.contains("gün") || header.contains("adet") || header.contains("sıra") || header.contains("id")) {
@@ -171,4 +168,5 @@ public class RaporlarFrame extends JFrame {
                              column.replace("_", " ").substring(1).toLowerCase();
         };
     }
+
 }
