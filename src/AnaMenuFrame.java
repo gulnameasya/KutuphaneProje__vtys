@@ -8,7 +8,7 @@ public class AnaMenuFrame extends JFrame {
 
     public AnaMenuFrame(String rol) {
         this.rol = rol;
-        instance = this; // Kendini statik olarak sakla
+        instance = this; 
 
         String rolBuyuk = rol.substring(0, 1).toUpperCase() + rol.substring(1).toLowerCase();
 
@@ -124,14 +124,15 @@ public class AnaMenuFrame extends JFrame {
 
     private void openFrame(JFrame frame) {
         frame.setVisible(true);
-        this.setVisible(false); // Ana menüyü gizle, ama yok etme!
+        this.setVisible(false); 
     }
 
-    // Diğer ekranlardan geri dönmek için statik metod
+   
     public static void showMenu() {
         if (instance != null) {
             instance.setVisible(true);
             instance.toFront();
         }
     }
+
 }
