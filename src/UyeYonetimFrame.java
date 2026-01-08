@@ -49,7 +49,6 @@ public class UyeYonetimFrame extends JFrame {
 
         add(panelAra, BorderLayout.NORTH);
 
-        // Gerçek zamanlı arama
         txtAra.getDocument().addDocumentListener(new DocumentListener() {
             public void insertUpdate(DocumentEvent e) { uyeListele(txtAra.getText().trim()); }
             public void removeUpdate(DocumentEvent e) { uyeListele(txtAra.getText().trim()); }
@@ -76,7 +75,6 @@ public class UyeYonetimFrame extends JFrame {
         table.setGridColor(new Color(200, 200, 200));
         table.setShowGrid(true);
 
-        // ID sütununu gizle
         table.getColumnModel().getColumn(0).setMinWidth(0);
         table.getColumnModel().getColumn(0).setMaxWidth(0);
         table.getColumnModel().getColumn(0).setWidth(0);
@@ -118,7 +116,6 @@ public class UyeYonetimFrame extends JFrame {
         gbc.gridx = 0; gbc.gridy = ++y; panelForm.add(new JLabel("Email *:"), gbc);
         gbc.gridx = 1; panelForm.add(txtEmail, gbc);
 
-        // Butonlar
         JPanel btnPanel = new JPanel(new GridLayout(1, 5, 20, 0));
         JButton btnYeni = createStyledButton("YENİ", new Color(0, 150, 0));
         JButton btnKaydet = createStyledButton("KAYDET", new Color(0, 140, 0));
@@ -162,11 +159,6 @@ public class UyeYonetimFrame extends JFrame {
         });
         panelAlt.add(btnGeri);
 
-        // Form panelinin altına değil, ayrı bir panel olarak ekle (çakışmasın)
-        // Zaten SOUTH'ta form var, bu yüzden form panelinin içine ekleyelim veya ayrı yapalım
-        // En temiz: form panelinin altına ekleyelim ama layout'u bozmadan
-
-        // Form panelini bir wrapper'a alalım
         JPanel wrapper = new JPanel(new BorderLayout());
         wrapper.setBackground(new Color(240, 255, 240));
         wrapper.add(panelForm, BorderLayout.CENTER);
@@ -174,7 +166,6 @@ public class UyeYonetimFrame extends JFrame {
 
         add(wrapper, BorderLayout.SOUTH);
 
-        // Çarpıya basınca ana menüye dön
         addWindowListener(new java.awt.event.WindowAdapter() {
             @Override
             public void windowClosing(java.awt.event.WindowEvent e) {
@@ -370,4 +361,5 @@ public class UyeYonetimFrame extends JFrame {
         txtTelefon.setText(tableModel.getValueAt(row, 2).toString());
         txtEmail.setText(tableModel.getValueAt(row, 3).toString());
     }
+
 }
