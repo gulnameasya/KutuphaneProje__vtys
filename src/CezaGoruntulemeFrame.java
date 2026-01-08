@@ -19,7 +19,7 @@ public class CezaGoruntulemeFrame extends JFrame {
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLayout(new BorderLayout());
 
-        // Arka plan rengi
+        
         getContentPane().setBackground(new Color(240, 255, 240));
 
         // ===== BAŞLIK =====
@@ -81,14 +81,14 @@ public class CezaGoruntulemeFrame extends JFrame {
         btnGeri.setFocusPainted(false);
         btnGeri.setCursor(new Cursor(Cursor.HAND_CURSOR));
         btnGeri.addActionListener(e -> {
-            dispose(); // Bu pencereyi kapat
-            AnaMenuFrame.showMenu(); // Ana menüyü tekrar göster
+            dispose(); 
+            AnaMenuFrame.showMenu(); 
         });
         panelAlt.add(btnGeri);
 
         add(panelAlt, BorderLayout.SOUTH);
 
-        // Çarpı (X) butonuna basınca da ana menüye dön
+        
         addWindowListener(new java.awt.event.WindowAdapter() {
             @Override
             public void windowClosing(java.awt.event.WindowEvent e) {
@@ -96,7 +96,7 @@ public class CezaGoruntulemeFrame extends JFrame {
             }
         });
 
-        // Verileri yükle
+        
         cmbUye.addActionListener(e -> cezaListele());
         cezaListele();
     }
@@ -147,4 +147,5 @@ public class CezaGoruntulemeFrame extends JFrame {
             JOptionPane.showMessageDialog(this, "Ceza listeleme hatası: " + ex.getMessage(), "Hata", JOptionPane.ERROR_MESSAGE);
         }
     }
+
 }
