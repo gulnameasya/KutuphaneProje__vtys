@@ -1,1 +1,1 @@
-"# KutuphaneProje__vtys" 
+"Veri tabanı yönetim sistemleri final ödevi"
