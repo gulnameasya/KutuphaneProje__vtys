@@ -126,7 +126,6 @@ public class DinamikAramaFrame extends JFrame {
         panelAlt.add(btnGeri);
         add(panelAlt, BorderLayout.SOUTH);
 
-        // Çarpıya basınca da geri dön
         addWindowListener(new java.awt.event.WindowAdapter() {
             @Override
             public void windowClosing(java.awt.event.WindowEvent e) {
@@ -134,10 +133,8 @@ public class DinamikAramaFrame extends JFrame {
             }
         });
 
-        // Eventler
         btnAra.addActionListener(e -> kitapAra());
 
-        // Otomatik arama (yazarken)
         txtKitapAdi.getDocument().addDocumentListener(new javax.swing.event.DocumentListener() {
             public void insertUpdate(javax.swing.event.DocumentEvent e) { kitapAra(); }
             public void removeUpdate(javax.swing.event.DocumentEvent e) { kitapAra(); }
@@ -163,7 +160,6 @@ public class DinamikAramaFrame extends JFrame {
         chkSadeceMevcut.addActionListener(e -> kitapAra());
         cmbSort.addActionListener(e -> kitapAra());
 
-        // İlk yükleme
         kitapAra();
     }
 
@@ -235,4 +231,5 @@ public class DinamikAramaFrame extends JFrame {
             return null;
         }
     }
+
 }
